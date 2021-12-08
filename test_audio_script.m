@@ -1,3 +1,7 @@
+clear all;
+clc;
+
+
 %% ReadSound2 = [ 0x1 0x0 0x0 0x0 0x0 0x0 0x1 0x0 0x0 ];
 
 fp = fopen('Westminster_edited.h', 'rt');       %% ENTER FILE NAME HERE
@@ -10,9 +14,14 @@ C = cellfun(@(x)hex2dec(x), C, 'UniformOutput', false);
 result=cell2mat(C)'
 allOneString = sprintf('%d, ' , result);
 
-int_result = uint8(result)
+int_result = uint8(result);     % To convert from double to uint8
 
-audiowrite('Westminster_44K_16bit.wav',int_result,44000,'BitsPerSample',16)        %% ENTER AUDIO O/P FILES NAME HERE WITH SAMPLING RATE AND BITS PER SAMPLE
+final_result = typecast(int_result,'int16')
+
+% result_LSB = int_result(1:2:896894)           % enter the last number of int_result
+% result_MSB = int_result(2:2:896894)           % enter the last number of int_result
+
+audiowrite('Westminster_20K_signed16bit_FINAL.wav',final_result,20000,'BitsPerSample',16)        %% ENTER AUDIO O/P FILES NAME HERE WITH SAMPLING RATE AND BITS PER SAMPLE
 
 %audiowrite (audio_test.wav, result, 20000)
 
