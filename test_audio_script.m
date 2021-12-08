@@ -12,7 +12,7 @@ allOneString = sprintf('%d, ' , result);
 
 int_result = uint8(result)
 
-audiowrite('Westminster.wav',int_result,48000,'BitsPerSample',8)        %% ENTER AUDIO O/P FILES NAME HERE WITH SAMPLING RATE AND BITS PER SAMPLE
+audiowrite('Westminster_44K_16bit.wav',int_result,44000,'BitsPerSample',16)        %% ENTER AUDIO O/P FILES NAME HERE WITH SAMPLING RATE AND BITS PER SAMPLE
 
 %audiowrite (audio_test.wav, result, 20000)
 
